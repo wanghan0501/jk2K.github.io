@@ -16,13 +16,11 @@
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="如何并发访问apache | jk2K&#39;s 窝">
-    <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者"
-    ">
+    <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="如何并发访问apache | jk2K&#39;s 窝">
-    <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者"
-    ">
+    <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
     <meta name="author" content="John Doe">
@@ -166,9 +164,8 @@
 <li><p>实验3: 打开多个浏览器隐身窗口和浏览器正常窗口来访问链接，结果发现对于多个隐身窗口，apache只安排一个线程来处理访问请求，对于多个正常窗口来，apache也只安排一个线程来处理访问请求，也就是说，打开多个浏览器隐身窗口和正常窗口，apache只会开启两个线程来处理访问请求</p>
 </li>
 <li><p>实验4: 通过apache自带的性能测试工具ab来实现并发访问，实验成功，满足并发访问请求，ab使用举例如下</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ab -n10 -c5 http://www.baidu.com/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ab -n10 -c5 http://www.baidu.com/</span><br></pre></td></tr></table></figure>
 <p>  其中参数n代表总共要访问多少个请求<br>参数c代表并发访问多少个请求<br>最后的参数代表要访问的网址</p>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">incrementor</span><span class="params">(ptr: UnsafeMutablePointer&lt;Int&gt;)</span></span> &#123;</span><br><span class="line">    ptr.memory += <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">10</span></span><br><span class="line">incrementor(&amp;a)</span><br><span class="line"></span><br><span class="line">a  <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -214,9 +211,9 @@
         </div>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="/js/main.js"></script>
      
 </body>
 </html>
