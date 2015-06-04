@@ -138,27 +138,6 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
-
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
-
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
       <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
       <p class="excerpt">
     
@@ -171,28 +150,6 @@ rotate
       <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/apache/">apache</a>
 </span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
-
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
-
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>discuz添加在发布文章时输入自定义关键字的功能 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="discuz添加在发布文章时输入自定义关键字的功能 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="discuz添加在发布文章时输入自定义关键字的功能 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2014/04/discuz-add-custom-keyword-when-publish-article/"/>
 
     
 </head>
@@ -132,77 +132,59 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
+            <article class="post-container post-container--single">
 
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2014-04-08T03:15:54.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/discuz/">discuz</a>
+</span>
+    </div>
+    <h1 class="post-title">discuz添加在发布文章时输入自定义关键字的功能</h1>
+  </header>
 
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
+  <section class="post">
+    <h2 id="环境">环境</h2><ul>
+<li>discuz x3.1</li>
+</ul>
+<h2 id="操作步骤：">操作步骤：</h2><ol>
+<li><p>修改<code>template/default/portal/portalcp_article.htm</code>，在大约206行，修改为如下代码</p>
+ <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;dt&gt;&#123;lang article_author&#125;&lt;/dt&gt;</span><br><span class="line">&lt;dd&gt;&lt;input type="text" name="author" class="px p_fre" value="$article[author]" size="30" /&gt;&lt;/dd&gt;</span><br><span class="line">//添加的代码开始</span><br><span class="line">&lt;dt&gt;keywords&lt;/dt&gt;</span><br><span class="line">&lt;dd&gt;&lt;input type="text" name="keywords" class="px p_fre" value="$article[keywords]" size="30" /&gt;&lt;/dd&gt;</span><br><span class="line">//添加的代码结束</span><br><span class="line">&lt;!--&#123;if $category[$catid][allowcomment]&#125;--&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>source/include/portalcp/portalcp_article.php</code>，在大约97行，修改为如下代码</p>
+ <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="string">'highlight'</span> =&gt; <span class="variable">$style</span>,</span><br><span class="line"><span class="string">'showinnernav'</span> =&gt; <span class="keyword">empty</span>(<span class="variable">$_POST</span>[<span class="string">'showinnernav'</span>]) ? <span class="string">'0'</span> : <span class="string">'1'</span>,</span><br><span class="line"><span class="string">'keywords'</span> =&gt; dhtmlspecialchars(<span class="variable">$_GET</span>[<span class="string">'keywords'</span>])<span class="comment">//添加的代码</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>source/module/portal/portal_view.php</code>，在大约278行，修改为如下代码</p>
+ <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(strpos(<span class="variable">$articleprimaltplname</span>, <span class="string">':'</span>) !== <span class="keyword">false</span>) &#123;</span><br><span class="line"><span class="keyword">list</span>(<span class="variable">$tpldirectory</span>, <span class="variable">$articleprimaltplname</span>) = explode(<span class="string">':'</span>, <span class="variable">$articleprimaltplname</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$metakeywords</span> = <span class="variable">$article</span>[<span class="string">'keywords'</span>];<span class="comment">//添加的代码</span></span><br><span class="line"><span class="keyword">include_once</span> template(<span class="string">"diy:portal/view:&#123;$catid&#125;"</span>, <span class="keyword">NULL</span>, <span class="variable">$tpldirectory</span>, <span class="keyword">NULL</span>, <span class="variable">$articleprimaltplname</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改数据库表<code>pre_portal_article_title</code>，新增字段keywords varchar 255</p>
+</li>
+</ol>
 
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
+  </section>
 
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+</article>
 
 
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
-</div>
 
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">

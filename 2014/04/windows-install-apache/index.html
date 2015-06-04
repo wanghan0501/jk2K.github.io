@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>windows安装配置apache | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="windows安装配置apache | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="windows安装配置apache | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2014/04/windows-install-apache/"/>
 
     
 </head>
@@ -132,77 +132,79 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
+            <article class="post-container post-container--single">
 
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
-
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
   <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
+</span>
+    </div>
+    <h1 class="post-title">windows安装配置apache</h1>
+  </header>
 
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
+  <section class="post">
+    <h2 id="环境">环境</h2><ul>
+<li><a href="http://www.apachelounge.com/download/" target="_blank" rel="external">httpd-2.4.9-win64.zip</a></li>
+<li>WindowsServer 2008 R2</li>
+</ul>
+<h2 id="安装配置">安装配置</h2><ol>
+<li>解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改</li>
+<li><p>打开conf/httpd.conf, 按照如下步骤修改</p>
+<ul>
+<li>找到<code>ServerRoot &quot;c:/Apache24&quot;</code>，改为<br><code>ServerRoot &quot;e:/software/Apache24&quot;</code></li>
+<li>找到<code>#ServerName www.example.com:80</code>，修改为<br><code>ServerName localhost:80</code></li>
+<li>找到<code>LoadModule access_compat_module modules/mod_access_compat.so</code>, 在其上一行添加<br><code>PHPIniDir &quot;e:/software/php&quot;</code><br>注意: 一定要添加在LoadModule那一段的前面,以便提前加载,不然windows下apache无法读取php.ini里的设置，这里假设php放在e:/software/php目录下，版本为php-5.5.11-Win32-VC11-x64.zip</li>
+<li>在LoadModule这段后面添加<br><code>LoadModule php5_module &quot;e:/software/php/php5apache2_4.dll&quot;</code><br>注意：由于apache版本的不同，这里不一定是<code>php5apache2_4.dll</code>，比如apache版本为2.2，这里就应该是<code>php5apache2_2.dll</code></li>
+<li>找到<code>AddType application/x-gzip .gz .tgz</code>，在其下一行添加<br><code>AddType application/x-httpd-php .php</code></li>
+<li><p>找到</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"c:/Apache24/htdocs"</span></span><br><span class="line"><span class="tag">&lt;Directory "c:/Apache24/htdocs"&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"e:/software/Apache24/htdocs"</span></span><br><span class="line"><span class="tag">&lt;Directory "e:/software/Apache24/htdocs"&gt;</span></span><br></pre></td></tr></table></figure>
+<p>htdocs是网站存放目录</p>
+</li>
+<li>找到<code>DirectoryIndex index.html</code>，修改为<br><code>DirectoryIndex index.php index.html</code></li>
+<li>保存关闭</li>
+</ul>
+</li>
+<li><p>进入bin文件夹</p>
+</li>
+</ol>
+<ul>
+<li><p>将apache注册为windows服务<br><code>httpd -k install -n apache</code><br>以后就可以用以下命令操作apache</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">net start apache <span class="comment">#启动apache</span></span><br><span class="line">net stop apache <span class="comment">#关闭apache</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看apache配置是否正确，可以执行<br><code>httpd -n apache -t</code></p>
+</li>
+</ul>
+<h2 id="常见问题：">常见问题：</h2><ul>
+<li>提示缺少msvcr100.dll，请安装<a href="http://download.microsoft.com/download/3/2/2/3224B87F-CFA0-4E70-BDA3-3DE650EFEBA5/vcredist_x64.exe" target="_blank" rel="external">Visual C++ Redistributable 2010</a></li>
+</ul>
 
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+  </section>
+
+</article>
 
 
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
-</div>
 
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">

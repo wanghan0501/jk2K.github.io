@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>windows安装配置php | jk2K&#39;s 窝</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="windows安装配置php | jk2K&#39;s 窝">
+    <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="windows安装配置php | jk2K&#39;s 窝">
+    <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    
+    <meta name="author" content="John Doe">
+    
+    <link rel="stylesheet" href="/css/vno.css" type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+
+    
+    <link rel="icon" href="/images/logo.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://jk2K.com/2014/04/windows-install-php/"/>
+
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 jk2K&#39;s 窝 的主页"><img src="/images/logo.jpg" width="80" alt="jk2K&#39;s 窝 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for jk2K&#39;s 窝">jk2K&#39;s 窝</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">休息，是为了更好的前行</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+        <!-- Weibo-->
+        
+        <li class="navigation__item">
+            <a href="http://weibo.com/jk2K" title="我的微博" target="_blank">
+                <i class='social fa fa-weibo'></i>
+                <span class="label">Weibo</span>
+            </a>
+        </li>
+        
+
+        <!-- SegmentFault -->
+
+        <!-- Github -->
+        
+        <li class="navigation__item">
+            <a href="https://github.com/jk2K" title="查看我的GitHub主页" target="_blank">
+                <i class='social fa fa-github'></i>
+                <span class="label">Github</span>
+            </a>
+        </li>
+        
+
+        <!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/2227031/jk2k" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+        <!-- Google Plus -->
+        
+
+        <!-- Facebook -->
+        
+
+        <!-- Twitter -->
+        
+
+        
+    </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2014-04-08T08:11:19.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/php/">php</a>
+</span>
+    </div>
+    <h1 class="post-title">windows安装配置php</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="环境：">环境：</h2><ul>
+<li><a href="http://windows.php.net/download/" target="_blank" rel="external">php-5.5.11-Win32-VC11-x64.zip</a></li>
+<li>WindowsServer 2008 R2</li>
+</ul>
+<h2 id="说明：">说明：</h2><ul>
+<li>Non Thread Safe和Thread Safe版本的区别<br>Thread Safe是线程安全，执行时会进行线程（Thread）安全检查，以防止有新请求就启动新线程的CGI执行方式而耗尽系统资源。Non Thread Safe是非线程安全，在执行时不进行线程（Thread）安全检查。</li>
+<li>VC6、VC9和VC11的区别<br>由不同的编译器编译而成,VC6是由Visual Studio 6编译而成，VC9是由Visual Studio 2008编译而成，VC11是由Visual Studio 2012编译而成，版本越新，性能和稳定性越好，所以推荐用VC11</li>
+<li>php.ini-development和php.ini-production的区别<br>这两个都可以更名为php.ini, 只不过php.ini-development里的配置更适合开发用，php.ini-production里的配置更适合发布产品时用，例如当网站正式上线运营时，应该将php.ini-production更名为php.ini</li>
+</ul>
+<h2 id="安装步骤">安装步骤</h2><ol>
+<li>解压php-5.5.11-Win32-VC11-x64.zip，得到php.ini-development, 将其更名为php.ini</li>
+<li><p>打开php.ini，修改以下参数</p>
+<ul>
+<li>找到date.timezone，设置时区为中国时区<br><code>date.timezone = PRC</code></li>
+<li>找到<code>; extension_dir = &quot;ext&quot;</code>，改为如下样子，取消前面的;注释符<br><code>extension_dir = &quot;e:/software/php/ext&quot;</code></li>
+<li><p>找到</p>
+<figure class="highlight dns"><table><tr><td class="code"><pre><span class="line"><span class="comment">;extension=php_bz2.dll</span></span><br><span class="line"><span class="comment">;extension=php_curl.dll</span></span><br><span class="line"><span class="comment">;extension=php_fileinfo.dll</span></span><br><span class="line"><span class="comment">;extension=php_gd2.dll</span></span><br><span class="line"><span class="comment">;extension=php_gettext.dll</span></span><br><span class="line"><span class="comment">;extension=php_gmp.dll</span></span><br><span class="line"><span class="comment">;extension=php_intl.dll</span></span><br></pre></td></tr></table></figure>
+<p>按照需要来加载这些扩展库，笔者一般加载这些</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment">;远程抓取页面</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_curl.dll</span></span></span><br><span class="line"><span class="comment">;图像处理</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_gd2.dll</span></span></span><br><span class="line"><span class="comment">;多字节字符串处理</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_mbstring.dll</span></span></span><br><span class="line"><span class="comment">;操作mysql数据库</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_mysqli.dll</span></span></span><br><span class="line"><span class="comment">;ssl加密传输</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_openssl.dll</span></span></span><br><span class="line"><span class="comment">;使用内存缓存，加速网站</span></span><br><span class="line"><span class="setting">extension=<span class="value">php_memcache.dll</span></span></span><br></pre></td></tr></table></figure>
+<p>加载某个扩展库，只需取消行首的<code>;</code>符，如果没有该扩展库，请查看ext文件夹下是否有该扩展库，如果有，按照格式手动添加即可，如果没有该扩展库，需手动下载扩展库文件到ext文件夹下，最后按照格式手动添加<br>每次改动php.ini文件里的配置时，都需要重启apache才能生效</p>
+</li>
+</ul>
+</li>
+<li><p>保存退出</p>
+</li>
+<li>测试php是否安装配置成功, 可以执行php解压目录下的php.exe</li>
+</ol>
+<h2 id="常见问题：">常见问题：</h2><ul>
+<li>提示缺少msvcr110.dll<br>请安装<a href="http://download.microsoft.com/download/9/C/D/9CD480DC-0301-41B0-AAAB-FE9AC1F60237/VSU4/vcredist_x64.exe" target="_blank" rel="external">Visual C++ Redistributable 2012</a></li>
+</ul>
+
+  </section>
+
+</article>
+
+
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
+
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2015 - 本站由 <a href="/">@jk2K</a> 创建,
+        使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题,
+        修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>
+    </span>
+</footer>
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-63739663-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>

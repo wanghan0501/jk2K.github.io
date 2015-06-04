@@ -138,66 +138,6 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
-
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
-
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
-      <p class="excerpt">
-    
-      准备条件
-假设web目录为/www/example.com
-本地git目录为/website_dev
-公共git仓库地址为http://git.example.com/test/test.git
-git用户为username, 密码为password
-
-步骤
-在/www/example.com目录下执行以下命令
-git clone http://git.example.com/test/test.gitgit remote add product http://username:password
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/git/">git</a>
-</span><a class="btn-border-small" href="/2014/05/automatic-deployment-with-git-hooks/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
       <h2 class="post-list__post-title post-title"><a href="/2014/05/discuz-database-access-denied-for-user-localhost/" title="link to post.title">discuz因数据库权限错误报Access denied for user</a></h2>
       <p class="excerpt">
     
@@ -208,70 +148,6 @@ git clone http://git.example.com/test/test.gitgit remote add product http://user
       <div class="post-list__meta"><time datetime="2014-05-17T13:07:12.000Z" class="post-list__meta--date date">2014-05-17</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/discuz/">discuz</a>
 </span><a class="btn-border-small" href="/2014/05/discuz-database-access-denied-for-user-localhost/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-configure-secure-mysql/" title="link to post.title">windows下配置一个更安全的mysql</a></h2>
-      <p class="excerpt">
-    
-      环境
-mysql版本：mysql-5.6.16-winx64.zip
-windows版本：Microsoft Windows Server 2008 R2 Enterprise
-
-安装步骤
-解压mysql-5.6.16-winx64.zip至e:\software\mysql
-将e:\software\mysql\bin添加至系统变量path中，使得cmd中可以直接运行bin文件夹下的程序
-修改mysql目录下的my-default.ini为my.ini，按情况修改配置
-将mysql安装为win
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:22:40.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/mysql/">mysql</a>
-</span><a class="btn-border-small" href="/2014/04/windows-configure-secure-mysql/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-php/" title="link to post.title">windows安装配置php</a></h2>
-      <p class="excerpt">
-    
-      环境：
-php-5.5.11-Win32-VC11-x64.zip
-WindowsServer 2008 R2
-
-说明：
-Non Thread Safe和Thread Safe版本的区别Thread Safe是线程安全，执行时会进行线程（Thread）安全检查，以防止有新请求就启动新线程的CGI执行方式而耗尽系统资源。Non Thread Safe是非线程安全，在执行时不进行线程（Thread）安全检查。
-VC6、VC9和VC11的区别由不同的编译器编译而成,VC6是由Visual Studio
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:11:19.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/php/">php</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-php/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
-
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
-
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
@@ -309,26 +185,6 @@ discuz x3.1
       <div class="post-list__meta"><time datetime="2012-10-15T04:40:07.000Z" class="post-list__meta--date date">2012-10-15</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/discuz/">discuz</a>
 </span><a class="btn-border-small" href="/2012/10/discuz-custom-exit-page/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6导致无法访问mysql数据库</a></h2>
-      <p class="excerpt">
-    
-      环境
-xp sp3系统
-php5.2.6
-apache httpd-2.2.22-win32-x86-no_ssl
-mysql5.5.20.0
-
-情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#39
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/ipv6/">ipv6</a>
-</span><a class="btn-border-small" href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

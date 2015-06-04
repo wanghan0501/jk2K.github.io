@@ -138,81 +138,6 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
-
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
-
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
-      <p class="excerpt">
-    
-      准备条件
-假设web目录为/www/example.com
-本地git目录为/website_dev
-公共git仓库地址为http://git.example.com/test/test.git
-git用户为username, 密码为password
-
-步骤
-在/www/example.com目录下执行以下命令
-git clone http://git.example.com/test/test.gitgit remote add product http://username:password
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/git/">git</a>
-</span><a class="btn-border-small" href="/2014/05/automatic-deployment-with-git-hooks/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/discuz-database-access-denied-for-user-localhost/" title="link to post.title">discuz因数据库权限错误报Access denied for user</a></h2>
-      <p class="excerpt">
-    
-      情景在现笔者根据数据库用户权限最小化的原则分配给discuz的数据库用户权限为select, insert, update, delete, index, 但是安装的时候报Access denied for user错误，经过一番资料查找，得出可能是缺少create, drop权限
-分析discuz的数据库用户权限至少应该包括select, insert, update, delete, index, create, drop, alter, 如果缺少的话, 可能会报Access denied 
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-05-17T13:07:12.000Z" class="post-list__meta--date date">2014-05-17</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2014/05/discuz-database-access-denied-for-user-localhost/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
       <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-configure-secure-mysql/" title="link to post.title">windows下配置一个更安全的mysql</a></h2>
       <p class="excerpt">
     
@@ -291,44 +216,6 @@ discuz x3.1
       <div class="post-list__meta"><time datetime="2014-04-08T03:15:54.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/discuz/">discuz</a>
 </span><a class="btn-border-small" href="/2014/04/discuz-add-custom-keyword-when-publish-article/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz自定义退出时的跳转地址</a></h2>
-      <p class="excerpt">
-    
-      需求如果我们想在discuz退出后跳转到其他页面，比如说另外定制的一个页面，该怎么做呢?
-知识discuz处理退出时的跳转地址的文件是source\class_member.php
-具体步骤假如我们有一个logout.html的文件，需要在discuz退出后跳转到它
-打开source\class_member.php，找到on_logout()函数
-修改为如下代码function on_logout() &amp;#123;	global $_G;	$ucsynlogout = $this-&amp;gt;se
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-10-15T04:40:07.000Z" class="post-list__meta--date date">2012-10-15</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2012/10/discuz-custom-exit-page/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6导致无法访问mysql数据库</a></h2>
-      <p class="excerpt">
-    
-      环境
-xp sp3系统
-php5.2.6
-apache httpd-2.2.22-win32-x86-no_ssl
-mysql5.5.20.0
-
-情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#39
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/ipv6/">ipv6</a>
-</span><a class="btn-border-small" href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

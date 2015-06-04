@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2012/04/ipv6-cause-unable-connect-to-mysql-database/"/>
 
     
 </head>
@@ -132,77 +132,55 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
+            <article class="post-container post-container--single">
 
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/ipv6/">ipv6</a>
+</span>
+    </div>
+    <h1 class="post-title">ipv6导致无法访问mysql数据库</h1>
+  </header>
 
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
+  <section class="post">
+    <h2 id="环境">环境</h2><ul>
+<li>xp sp3系统</li>
+<li>php5.2.6</li>
+<li>apache httpd-2.2.22-win32-x86-no_ssl</li>
+<li>mysql5.5.20.0</li>
+</ul>
+<h2 id="情景再现">情景再现</h2><p>前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为<code>Could not connect to the specific instance MySQL Error Number 2003，Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)，If you want to check the network connection, please click the Ping button</code></p>
+<p>当时我就纳闷了，好好的数据库怎么突然就无法连接了呢，于是就在网上寻找解决方案，试过很多方法，但是都没能解决我这个问题，我发现好多人都是直接在网上复制答案来给别人回答问题，根本就没有真正考虑这个问题的原因</p>
+<p>比如把<code>my.ini</code>文件复制到<code>windows/system</code>文件夹里,这就是一种典型的治标不治本的方法，并且还无法解决这个问题，此外如果把那个文件复制到<code>windows/system</code>里，万一下次mysql的my.ini文件更改了，怎么办？再复制一次？其实完全可以在系统变量里指定my.ini的路径，这样的话是否一劳永逸？</p>
+<p>我觉得我们解决问题的原则是，既要知道原因，又要知道如何更好地解决它。</p>
+<h2 id="解决方案">解决方案</h2><p>打开mysql的<code>my.ini</code>文件，在mysqld的部分里添加<code>bind-address=127.0.0.1</code>（在<code>port=3306</code>下面）这段代码</p>
+<h2 id="分析">分析</h2><p>原因是我在网络中心的时候安装了ipv6协议，mysql默认是以ipv4地址访问的，当我们安装ipv6协议时，mysql就默认以ipv6地址访问，所以我们才无法连接到数据库，这个问题一般出现在xp系统里，xp系统默认是不安装ipv6协议的，win7默认安装，所以win7不会出现这种问题</p>
 
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
+  </section>
 
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+</article>
 
 
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
-</div>
 
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">

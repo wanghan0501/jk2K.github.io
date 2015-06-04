@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>通过git hooks自动部署代码 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="通过git hooks自动部署代码 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="通过git hooks自动部署代码 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2014/05/automatic-deployment-with-git-hooks/"/>
 
     
 </head>
@@ -132,77 +132,72 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问apache</a></h2>
-      <p class="excerpt">
-    
-      需求需要同时访问某个链接, web服务器是apache
-条件准备apache需加载mod_status模块
+            <article class="post-container post-container--single">
 
-打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
-#LoadModule status_module modules/mod_status.so
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/git/">git</a>
+</span>
+    </div>
+    <h1 class="post-title">通过git hooks自动部署代码</h1>
+  </header>
 
-配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
-&amp;lt;location /server-status&amp;gt;	sethandler serv
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
+  <section class="post">
+    <h3 id="准备条件">准备条件</h3><ul>
+<li>假设web目录为/www/example.com</li>
+<li>本地git目录为/website_dev</li>
+<li>公共git仓库地址为<a href="http://git.example.com/test/test.git" target="_blank" rel="external">http://git.example.com/test/test.git</a></li>
+<li>git用户为username, 密码为password</li>
+</ul>
+<h3 id="步骤">步骤</h3><ol>
+<li><p>在/www/example.com目录下执行以下命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> http://git.example.com/<span class="built_in">test</span>/test.git</span><br><span class="line">git remote add product http://username:password@git.example.com/<span class="built_in">test</span>/test.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在公共git仓库的hooks里创建post-receive(windows版本为post-receive.bat, linux版本才是post-receive)，在post-receive里添加代码</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">cd /www/example<span class="class">.com</span></span><br><span class="line">git pull product master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在本地git目录/website_dev下执行</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git push product master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搞定了, 请验证一下是否正确自动部署代码</p>
+</li>
+</ol>
+<h3 id="结语">结语</h3><ol>
+<li><p>自动输入帐号密码</p>
+ <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">http://username:password@git.example.com/<span class="built_in">test</span>/test.git</span><br></pre></td></tr></table></figure>
+<p> 这种链接结构可以让git记住密码，不用每次提交或签出时都输入账号密码，username是git的账号名称，password是账号密码</p>
+</li>
+<li><p>post-receive里的代码请根据实际情况进行修改</p>
+</li>
+<li><p>之前笔者的web服务器是linux的，代码部署用的是rsync, 还不错，挺好用的，现在web服务器换成windows的了，rsync在windows有一个移植版本，但需要收费，所以目前采用git自动部署方案</p>
+</li>
+</ol>
 
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
+  </section>
 
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+</article>
 
 
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
-</div>
 
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">
