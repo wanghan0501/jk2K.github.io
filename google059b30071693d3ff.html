@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>如何并发访问apache | jk2K&#39;s 窝</title>
+    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="如何并发访问apache | jk2K&#39;s 窝">
+    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="如何并发访问apache | jk2K&#39;s 窝">
+    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com/2014/08/how-to-test-apache-concurrency-access/"/>
+    <link rel="canonical" href="http://jk2K.com/google059b30071693d3ff.html"/>
 
     
 </head>
@@ -135,43 +135,14 @@
             <article class="post-container post-container--single">
 
   <header class="post-header">
-    <div class="post-meta">
-      <time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span>
-    </div>
-    <h1 class="post-title">如何并发访问apache</h1>
+    <h1 class="post-title"></h1>
   </header>
 
   <section class="post">
-    <h3 id="需求">需求</h3><p>需要同时访问某个链接, web服务器是apache</p>
-<h3 id="条件准备">条件准备</h3><p>apache需加载mod_status模块</p>
-<ol>
-<li><p>打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="comment">#LoadModule status_module modules/mod_status.so</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;location /server-status&gt;</span></span><br><span class="line">	<span class="keyword"><span class="common">sethandler</span></span> server-status</span><br><span class="line">	<span class="keyword"><span class="common">order</span></span> deny,allow</span><br><span class="line">	<span class="keyword"><span class="common">allow</span></span> from <span class="literal">all</span></span><br><span class="line"><span class="tag">&lt;/location&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问<a href="http://localhost/server-status?refresh=1" target="_blank" rel="external">http://localhost/server-status?refresh=1</a><br>即可查看apache服务状态(其中1代表每秒刷新1次)</p>
-</li>
-</ol>
-<h3 id="实验过程">实验过程</h3><ul>
-<li><p>实验1: 最开始想用浏览器来并发访问链接, 用的是chrome浏览器，同时打开多个标签页来访问, 额，看了半天，发现即使打开很多个标签页，apache只开启一个线程来处理访问请求，这样就导致多个标签页的访问请求是排队来处理的, 没有实现并发访问的需求</p>
-</li>
-<li><p>实验2: 开启多个浏览器窗口来访问链接, 结果如实验1，apache只开启一个线程来处理访问请求</p>
-</li>
-<li><p>实验3: 打开多个浏览器隐身窗口和浏览器正常窗口来访问链接，结果发现对于多个隐身窗口，apache只安排一个线程来处理访问请求，对于多个正常窗口来，apache也只安排一个线程来处理访问请求，也就是说，打开多个浏览器隐身窗口和正常窗口，apache只会开启两个线程来处理访问请求</p>
-</li>
-<li><p>实验4: 通过apache自带的性能测试工具ab来实现并发访问，实验成功，满足并发访问请求，ab使用举例如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ab -n10 -c5 http://www.baidu.com/</span><br></pre></td></tr></table></figure>
-<p>  其中参数n代表总共要访问多少个请求<br>参数c代表并发访问多少个请求<br>最后的参数代表要访问的网址</p>
-</li>
-</ul>
-
+    google-site-verification: google059b30071693d3ff.html
   </section>
-
 </article>
+
 
 
 <section class="post-comments">
@@ -193,6 +164,7 @@
             Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </section>
+
 
 
             <footer class="footer">
