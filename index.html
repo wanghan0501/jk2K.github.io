@@ -25,7 +25,7 @@
     
     <meta name="author" content="John Doe">
     
-    <link rel="stylesheet" href="/css/vno.css" type="text/css">
+    <link rel="stylesheet" href="css/vno.css" type="text/css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
 
     
@@ -138,6 +138,31 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2015/09/custom-ssh-welcome-message-in-ubuntu-md/" title="link to post.title">custom-ssh-welcome-message-in-ubuntu.md</a></h2>
+      <p class="excerpt">
+    
+      步骤
+打开/etc/update-motd.d, 这个目录下面的文件会在登录成功后按照序号的顺序先后运行
+cd /etc/update-motd.d
+
+我们找到00-header这个文件, 修改它, 在文件末尾添加如下代码
+cat &amp;lt;&amp;lt; &quot;EOT&quot;  /\_/\=( °w° )=  )   (  // (__ __)//EOT
+
+重新登录服务器就会看到如下效果啦
+
+
+
+小提示重新登录服务器后也许不会看到效果, 你再登录一次就肯定会看到啦, 就酱
+参考资料
+http://stackov
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2015-09-14T08:34:16.000Z" class="post-list__meta--date date">2015-09-14</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/09/custom-ssh-welcome-message-in-ubuntu-md/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2015/07/chrome-flush-sockets-dns-cache-tips/" title="link to post.title">chrome 刷新 dns 缓存小技巧</a></h2>
       <p class="excerpt">
     
@@ -149,7 +174,7 @@ http://stackoverflow.com/questions/15289766/how-to-enable-instant-host-file-read
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2015-07-07T09:55:29.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/chrome/">chrome</a>
+  <a class="tag-link" href="tags/index.html">chrome</a>
 </span><a class="btn-border-small" href="/2015/07/chrome-flush-sockets-dns-cache-tips/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -170,7 +195,7 @@ http://stackoverflow.com/questions/15289766/how-to-enable-instant-host-file-read
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
+  <a class="tag-link" href="tags/index.html">apache</a>
 </span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -187,7 +212,7 @@ rotate
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
+  <a class="tag-link" href="tags/index.html">apache</a>
 </span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -209,7 +234,7 @@ git clone http://git.example.com/test/test.gitgit remote add product http://user
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/git/">git</a>
+  <a class="tag-link" href="tags/index.html">git</a>
 </span><a class="btn-border-small" href="/2014/05/automatic-deployment-with-git-hooks/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -224,7 +249,7 @@ git clone http://git.example.com/test/test.gitgit remote add product http://user
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-05-17T13:07:12.000Z" class="post-list__meta--date date">2014-05-17</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
+  <a class="tag-link" href="tags/index.html">discuz</a>
 </span><a class="btn-border-small" href="/2014/05/discuz-database-access-denied-for-user-localhost/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -246,7 +271,7 @@ windows版本：Microsoft Windows Server 2008 R2 Enterprise
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-04-08T08:22:40.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/mysql/">mysql</a>
+  <a class="tag-link" href="tags/index.html">mysql</a>
 </span><a class="btn-border-small" href="/2014/04/windows-configure-secure-mysql/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -266,7 +291,7 @@ VC6、VC9和VC11的区别由不同的编译器编译而成,VC6是由Visual Studi
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-04-08T08:11:19.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/php/">php</a>
+  <a class="tag-link" href="tags/index.html">php</a>
 </span><a class="btn-border-small" href="/2014/04/windows-install-php/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -288,7 +313,7 @@ WindowsServer 2008 R2
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
+  <a class="tag-link" href="tags/index.html">apache</a>
 </span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
@@ -307,26 +332,8 @@ discuz x3.1
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-04-08T03:15:54.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
+  <a class="tag-link" href="tags/index.html">discuz</a>
 </span><a class="btn-border-small" href="/2014/04/discuz-add-custom-keyword-when-publish-article/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz自定义退出时的跳转地址</a></h2>
-      <p class="excerpt">
-    
-      需求如果我们想在discuz退出后跳转到其他页面，比如说另外定制的一个页面，该怎么做呢?
-知识discuz处理退出时的跳转地址的文件是source\class_member.php
-具体步骤假如我们有一个logout.html的文件，需要在discuz退出后跳转到它
-打开source\class_member.php，找到on_logout()函数
-修改为如下代码function on_logout() &amp;#123;	global $_G;	$ucsynlogout = $this-&amp;gt;se
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-10-15T04:40:07.000Z" class="post-list__meta--date date">2012-10-15</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2012/10/discuz-custom-exit-page/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
@@ -337,7 +344,7 @@ discuz x3.1
   <nav class="pagination" role="navigation">
     
     
-      <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/page/2/">Next</a>
+      <a class="older-posts pagination__older btn btn-small btn-tertiary" href="page/index.html">Next</a>
     
   </nav>
 
@@ -363,7 +370,7 @@ discuz x3.1
     </div>
 
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
 
      
 <script>

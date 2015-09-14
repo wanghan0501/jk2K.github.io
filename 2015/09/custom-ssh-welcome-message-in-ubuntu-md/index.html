@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>custom-ssh-welcome-message-in-ubuntu.md | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="custom-ssh-welcome-message-in-ubuntu.md | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="custom-ssh-welcome-message-in-ubuntu.md | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2015/09/custom-ssh-welcome-message-in-ubuntu-md/"/>
 
     
 </head>
@@ -132,34 +132,57 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
-      <p class="excerpt">
-    
-      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
-其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
-rotate
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="../../../tags/index.html">apache</a>
-</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-09-14T08:34:16.000Z" class="post-list__meta--date date">2015-09-14</time> &#8226; <span class="post-meta__tags tags">于&nbsp;</span>
+    </div>
+    <h1 class="post-title">custom-ssh-welcome-message-in-ubuntu.md</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="步骤">步骤</h2><ol>
+<li><p>打开<code>/etc/update-motd.d</code>, 这个目录下面的文件会在登录成功后按照序号的顺序先后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/update-motd.d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们找到<code>00-header</code>这个文件, 修改它, 在文件末尾添加如下代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt; <span class="string">"EOT"</span></span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新登录服务器就会看到如下效果啦</p>
+<img src="/2015/09/custom-ssh-welcome-message-in-ubuntu-md/screenshot.png" alt="screenshot.png" title="">
+</li>
+</ol>
+<h2 id="小提示">小提示</h2><p>重新登录服务器后也许不会看到效果, 你再登录一次就肯定会看到啦, 就酱</p>
+<h2 id="参考资料">参考资料</h2><ul>
+<li><a href="http://stackoverflow.com/questions/25214084/cant-get-ascii-art-to-echo-to-console" target="_blank" rel="external">http://stackoverflow.com/questions/25214084/cant-get-ascii-art-to-echo-to-console</a></li>
+<li><a href="http://www.cnphp6.com/archives/50433" target="_blank" rel="external">http://www.cnphp6.com/archives/50433</a></li>
+</ul>
+
+  </section>
+
+</article>
 
 
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
-</div>
 
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">
