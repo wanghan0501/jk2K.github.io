@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>自定义 ubuntu ssh 欢迎信息 | jk2K&#39;s 窝</title>
+    <title>为 apache 运行用户创建 ssh key | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="自定义 ubuntu ssh 欢迎信息 | jk2K&#39;s 窝">
+    <meta name="twitter:title" content="为 apache 运行用户创建 ssh key | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="自定义 ubuntu ssh 欢迎信息 | jk2K&#39;s 窝">
+    <meta property="og:title" content="为 apache 运行用户创建 ssh key | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com/2015/09/custom-ssh-welcome-message-in-ubuntu-md/"/>
+    <link rel="canonical" href="http://jk2K.com/2015/09/generate-ssh-key-for-apache-user/"/>
 
     
 </head>
@@ -136,29 +136,27 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-09-14T08:34:16.000Z" class="post-list__meta--date date">2015-09-14</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+      <time datetime="2015-09-21T09:49:00.000Z" class="post-list__meta--date date">2015-09-21</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
   <a class="tag-link" href="/tags/ubuntu/">ubuntu</a>
 </span>
     </div>
-    <h1 class="post-title">自定义 ubuntu ssh 欢迎信息</h1>
+    <h1 class="post-title">为 apache 运行用户创建 ssh key</h1>
   </header>
 
   <section class="post">
-    <h2 id="步骤">步骤</h2><ol>
-<li><p>打开<code>/etc/update-motd.d</code>, 这个目录下面的文件会在登录成功后按照序号的顺序先后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/update-motd.d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>我们找到<code>00-header</code>这个文件, 修改它, 在文件末尾添加如下代码</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt; <span class="string">"EOT"</span></span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新登录服务器就会看到如下效果啦</p>
-<img src="/2015/09/custom-ssh-welcome-message-in-ubuntu-md/screenshot.png" alt="screenshot.png" title="">
-</li>
-</ol>
-<h2 id="小提示">小提示</h2><p>重新登录服务器后也许不会看到效果, 你再登录一次就肯定会看到啦, 就酱</p>
-<h2 id="参考资料">参考资料</h2><ul>
-<li><a href="http://stackoverflow.com/questions/25214084/cant-get-ascii-art-to-echo-to-console" target="_blank" rel="external">http://stackoverflow.com/questions/25214084/cant-get-ascii-art-to-echo-to-console</a></li>
-<li><a href="http://www.cnphp6.com/archives/50433" target="_blank" rel="external">http://www.cnphp6.com/archives/50433</a></li>
+    <h2 id="解决方案">解决方案</h2><h3 id="方案1,_自动">方案1, 自动</h3><p><code>sudo -u apache ssh-keygen -t rsa</code></p>
+<h3 id="方案2,_手动">方案2, 手动</h3><p>你必须复制<code>root</code>用户生成的<code>key</code>到<code>apache</code>用户的<code>.ssh</code>文件夹下, 软链接是不行的, 必须复制, 复制, 复制, 重要的事情说三遍</p>
+<p>假设<code>apache</code>的<code>homedir</code>是<code>/var/www</code>(检查<code>/etc/passwd</code>), <code>root</code>用户生成的私钥(<code>key</code>)是<code>id_rsa-git</code></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">mkdir -p /var/www/.ssh/</span><br><span class="line">cp /root/.ssh/id_rsa-git /var/www/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<p>无需复制公钥(<code>public key</code>)</p>
+<h4 id="注意">注意</h4><ul>
+<li>默认使用的私钥名称是<code>id_rsa</code>或<code>id_dsa</code>, 所以你复制过来的私钥名称得是这个</li>
+<li><code>apache</code>现在默认的运行用户为<code>daemon</code>, 他的<code>homedir</code>是<code>/usr/sbin</code>, 你可能得改成其他目录才能生效, 可以改成<code>home/daemon</code></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">chown -R apache:apache /var/www/.ssh</span><br><span class="line">chmod <span class="number">0700</span> /var/www/.ssh</span><br><span class="line">chmod <span class="number">0600</span> /var/www/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<h2 id="需求说明">需求说明</h2><p>apache 在执行<code>git</code>相关命令时报<code>Could not create directory &#39;/usr/sbin/.ssh&#39;</code></p>
+<h2 id="参考链接">参考链接</h2><ul>
+<li><a href="http://stackoverflow.com/questions/7306990/generating-ssh-keys-for-apache-user" target="_blank" rel="external">http://stackoverflow.com/questions/7306990/generating-ssh-keys-for-apache-user</a></li>
 </ul>
 
   </section>
