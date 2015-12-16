@@ -47,7 +47,7 @@
     </span>
 
     
-<header class="panel-cover " style="background-image: url(/images/background-cover.jpg)">
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
   <div class="panel-main">
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
@@ -138,93 +138,25 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2015/12/implement-pinch-zoom-and-drag-in-fresco-library/" title="link to post.title">让 fresco 支持双指缩放与拖动</a></h2>
       <p class="excerpt">
     
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
-
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
-
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
+      需求fresco 的 SimpleDraweeView 不支持缩放与拖动，想尽可能简单的实现这个功能
+代码
+说明在 PinchToZoomScaleDetector.java 的基础上实现了拖动操作, 不是很难, 在这个过程中最大的收获就是了解了ScaleGestureDetector和GestureDetector该如何使用, 好的, 尽情使用吧
+参考链接
+Implementing pinch zoom and drag using Android&amp;#039;s build in gestur
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/discuz-add-custom-keyword-when-publish-article/" title="link to post.title">discuz添加在发布文章时输入自定义关键字的功能</a></h2>
-      <p class="excerpt">
-    
-      环境
-discuz x3.1
-
-操作步骤：
-修改template/default/portal/portalcp_article.htm，在大约206行，修改为如下代码
- &amp;lt;dt&amp;gt;&amp;#123;lang article_author&amp;#125;&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;input type=&quot;text&quot; name=&quot;author&quot; class=&quot;px p_fre&quot; value=&quot;$article[author]&quot; size=&quot;30&quot; /&amp;gt;&amp;lt;/dd&amp;g
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T03:15:54.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2014/04/discuz-add-custom-keyword-when-publish-article/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz自定义退出时的跳转地址</a></h2>
-      <p class="excerpt">
-    
-      需求如果我们想在discuz退出后跳转到其他页面，比如说另外定制的一个页面，该怎么做呢?
-知识discuz处理退出时的跳转地址的文件是source\class_member.php
-具体步骤假如我们有一个logout.html的文件，需要在discuz退出后跳转到它
-打开source\class_member.php，找到on_logout()函数
-修改为如下代码function on_logout() &amp;#123;	global $_G;	$ucsynlogout = $this-&amp;gt;se
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-10-15T04:40:07.000Z" class="post-list__meta--date date">2012-10-15</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2012/10/discuz-custom-exit-page/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6导致无法访问mysql数据库</a></h2>
-      <p class="excerpt">
-    
-      环境
-xp sp3系统
-php5.2.6
-apache httpd-2.2.22-win32-x86-no_ssl
-mysql5.5.20.0
-
-情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#39
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/ipv6/">ipv6</a>
-</span><a class="btn-border-small" href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2015-12-16T09:37:02.000Z" class="post-list__meta--date date">2015-12-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span><a class="btn-border-small" href="/2015/12/implement-pinch-zoom-and-drag-in-fresco-library/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
     
   </ol>
 
-
-  <nav class="pagination" role="navigation">
-    
-      <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/#blog">Prev</a>
-    
-    
-  </nav>
 
 
 </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>jk2K&#39;s 窝 | 休息，是为了更好的前行</title>
+    <title>让 fresco 支持双指缩放与拖动 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta name="twitter:title" content="让 fresco 支持双指缩放与拖动 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jk2K&#39;s 窝 | 休息，是为了更好的前行">
+    <meta property="og:title" content="让 fresco 支持双指缩放与拖动 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com"/>
+    <link rel="canonical" href="http://jk2K.com/2015/12/implement-pinch-zoom-and-drag-in-fresco-library/"/>
 
     
 </head>
@@ -47,7 +47,7 @@
     </span>
 
     
-<header class="panel-cover " style="background-image: url(/images/background-cover.jpg)">
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
   <div class="panel-main">
     <div class="panel-main__inner panel-inverted">
     <div class="panel-main__content">
@@ -132,103 +132,52 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
-      <p class="excerpt">
-    
-      环境
-httpd-2.4.9-win64.zip
-WindowsServer 2008 R2
+            <article class="post-container post-container--single">
 
-安装配置
-解压httpd-2.4.9-win64.zip到e:/software/Apache24，以下以e:/software/Apache24为apache的存放目录做说明，目录可以随意改
-打开conf/httpd.conf, 按照如下步骤修改
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-12-16T09:37:02.000Z" class="post-list__meta--date date">2015-12-16</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span>
+    </div>
+    <h1 class="post-title">让 fresco 支持双指缩放与拖动</h1>
+  </header>
 
-找到ServerRoot &amp;quot;c:/Apache24&amp;quot;，改为ServerRoot &amp;quot;e:/software/Apache24
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:07:22.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/apache/">apache</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-apache/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/discuz-add-custom-keyword-when-publish-article/" title="link to post.title">discuz添加在发布文章时输入自定义关键字的功能</a></h2>
-      <p class="excerpt">
-    
-      环境
-discuz x3.1
+  <section class="post">
+    <h2 id="需求">需求</h2><p>fresco 的 SimpleDraweeView 不支持缩放与拖动，想尽可能简单的实现这个功能</p>
+<h2 id="代码">代码</h2><script src="//gist.github.com/67502e1744e081dcfef5.js?file=ZoomableDraweeView.java"></script>
+<h2 id="说明">说明</h2><p>在 <a href="https://gist.github.com/nbarraille/eb5d0da20bc813969b08" target="_blank" rel="external">PinchToZoomScaleDetector.java</a> 的基础上实现了拖动操作, 不是很难, 在这个过程中最大的收获就是了解了<code>ScaleGestureDetector</code>和<code>GestureDetector</code>该如何使用, 好的, 尽情使用吧</p>
+<h2 id="参考链接">参考链接</h2><ul>
+<li><a href="http://stackoverflow.com/questions/19418878/implementing-pinch-zoom-and-drag-using-androids-build-in-gesture-listener-and-s/19545542#19545542" target="_blank" rel="external">Implementing pinch zoom and drag using Android&#039;s build in gesture listener and scale listener</a></li>
+<li><a href="https://github.com/kunny/ZoomableDraweeView-sample" target="_blank" rel="external">ZoomableDraweeView-sample</a></li>
+<li><a href="https://gist.github.com/nbarraille/eb5d0da20bc813969b08" target="_blank" rel="external">PinchToZoomScaleDetector.java</a></li>
+<li><a href="http://frescolib.org/" target="_blank" rel="external">fresco docs</a></li>
+</ul>
 
-操作步骤：
-修改template/default/portal/portalcp_article.htm，在大约206行，修改为如下代码
- &amp;lt;dt&amp;gt;&amp;#123;lang article_author&amp;#125;&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;input type=&quot;text&quot; name=&quot;author&quot; class=&quot;px p_fre&quot; value=&quot;$article[author]&quot; size=&quot;30&quot; /&amp;gt;&amp;lt;/dd&amp;g
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T03:15:54.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2014/04/discuz-add-custom-keyword-when-publish-article/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz自定义退出时的跳转地址</a></h2>
-      <p class="excerpt">
-    
-      需求如果我们想在discuz退出后跳转到其他页面，比如说另外定制的一个页面，该怎么做呢?
-知识discuz处理退出时的跳转地址的文件是source\class_member.php
-具体步骤假如我们有一个logout.html的文件，需要在discuz退出后跳转到它
-打开source\class_member.php，找到on_logout()函数
-修改为如下代码function on_logout() &amp;#123;	global $_G;	$ucsynlogout = $this-&amp;gt;se
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-10-15T04:40:07.000Z" class="post-list__meta--date date">2012-10-15</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2012/10/discuz-custom-exit-page/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6导致无法访问mysql数据库</a></h2>
-      <p class="excerpt">
-    
-      环境
-xp sp3系统
-php5.2.6
-apache httpd-2.2.22-win32-x86-no_ssl
-mysql5.5.20.0
+  </section>
 
-情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#39
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/ipv6/">ipv6</a>
-</span><a class="btn-border-small" href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
+</article>
 
 
-  <nav class="pagination" role="navigation">
-    
-      <a class="older-posts pagination__older btn btn-small btn-tertiary" href="/#blog">Prev</a>
-    
-    
-  </nav>
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
 
 
-</div>
-
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
             <footer class="footer">
