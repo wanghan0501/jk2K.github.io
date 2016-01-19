@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>chrome 刷新 dns 缓存小技巧 | jk2K&#39;s 窝</title>
+    <title>当发布新版本时自动递增 versionCode | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="chrome 刷新 dns 缓存小技巧 | jk2K&#39;s 窝">
+    <meta name="twitter:title" content="当发布新版本时自动递增 versionCode | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="chrome 刷新 dns 缓存小技巧 | jk2K&#39;s 窝">
+    <meta property="og:title" content="当发布新版本时自动递增 versionCode | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://jk2K.com/2015/07/chrome-flush-sockets-dns-cache-tips/"/>
+    <link rel="canonical" href="http://jk2K.com/2016/01/versionCode-increase-automatically-when-a-new-release/"/>
 
     
 </head>
@@ -136,19 +136,22 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-07-07T09:55:29.000Z" class="post-list__meta--date date">2015-07-07</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/chrome/">chrome</a>
+      <time datetime="2016-01-19T07:31:57.000Z" class="post-list__meta--date date">2016-01-19</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
 </span>
     </div>
-    <h1 class="post-title">chrome 刷新 dns 缓存小技巧</h1>
+    <h1 class="post-title">当发布新版本时自动递增 versionCode</h1>
   </header>
 
   <section class="post">
-    <h2 id="Windows">Windows</h2><p>按住 <code>ctrl + f5</code> 一段时间</p>
-<h2 id="Mac">Mac</h2><p>按住 <code>Command + Shift + R</code> 一段时间</p>
-<h2 id="吐槽">吐槽</h2><p>“域名切换ip后<code>chrome</code>无法立即生效”这个问题苦恼了好久, 之前花了很多时间都没有找到解决办法, 有的朋友还专门写了个脚本去刷新chrome sockets, 脚本用过一段时间觉得还是挺麻烦, 不是最优解</p>
-<h2 id="参考资料">参考资料</h2><ul>
-<li><a href="http://stackoverflow.com/questions/15289766/how-to-enable-instant-host-file-reading-in-chrome" target="_blank" rel="external">http://stackoverflow.com/questions/15289766/how-to-enable-instant-host-file-reading-in-chrome</a></li>
+    <h2 id="需求">需求</h2><p><code>versionCode</code>是<code>android</code>应用内部用来识别版本，判断新旧用的, 希望每次发布新版本时能够自动化的自增，避免人工修改可能带来的问题</p>
+<h2 id="更好的做法">更好的做法</h2><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.regex.Pattern</span><br><span class="line"><span class="keyword">task</span>(<span class="string">'increaseVersionCode'</span>) &lt;&lt; &#123;</span><br><span class="line">    <span class="keyword">def</span> buildFile = <span class="keyword">file</span>(<span class="string">"build.gradle"</span>)</span><br><span class="line">    <span class="keyword">def</span> pattern = Pattern.<span class="keyword">compile</span>(<span class="string">"versionCode\\s+(\\d+)"</span>)</span><br><span class="line">    <span class="keyword">def</span> manifestText = buildFile.<span class="keyword">getText</span>()</span><br><span class="line">    <span class="keyword">def</span> matcher = pattern.matcher(manifestText)</span><br><span class="line">    matcher.<span class="keyword">find</span>()</span><br><span class="line">    <span class="keyword">def</span> versionCode = Integer.parseInt(matcher.<span class="keyword">group</span>(<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">def</span> manifestContent = matcher.replaceAll(<span class="string">"versionCode "</span> + ++versionCode)</span><br><span class="line">    buildFile.<span class="keyword">write</span>(manifestContent)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.whenTaskAdded &#123; <span class="keyword">task</span> -&gt;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">task</span>.name.matches(<span class="string">'assemble.*?Release'</span>)) &#123;</span><br><span class="line">        <span class="keyword">task</span>.dependsOn <span class="string">'increaseVersionCode'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就实现了每次发布新版本时，自动递增<code>versionCode</code>, 比普通做法的好处是，无需增加另外的文件, 更简便</p>
+<h2 id="普通做法">普通做法</h2><p>将<code>versionCode</code>放在一个文件里，每次发布新版本时，读取这个值，递增一次，最后再写回这个文件<br>具体代码如下<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> versionPropsFile = <span class="keyword">file</span>(<span class="string">'version.properties'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (versionPropsFile.canRead()) &#123;</span><br><span class="line">    <span class="keyword">def</span> Properties versionProps = <span class="keyword">new</span> Properties()</span><br><span class="line"></span><br><span class="line">    versionProps.load(<span class="keyword">new</span> FileInputStream(versionPropsFile))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> code = versionProps[<span class="string">'VERSION_CODE'</span>].<span class="keyword">toInteger</span>() + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    versionProps[<span class="string">'VERSION_CODE'</span>] = code.toString()</span><br><span class="line">    versionProps.store(versionPropsFile.<span class="keyword">newWriter</span>(), <span class="keyword">null</span>)</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        versionCode code</span><br><span class="line">        versionName <span class="string">"1.1"</span></span><br><span class="line">        minSdkVersion <span class="number">14</span></span><br><span class="line">        targetSdkVersion <span class="number">18</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> GradleException(<span class="string">"Could not read version.properties!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考链接">参考链接</h2><ul>
+<li><a href="http://stackoverflow.com/a/29256798/2227031" target="_blank" rel="external">How to autoincrement versionCode in Android Gradle</a></li>
+<li><a href="http://developer.android.com/tools/publishing/versioning.html" target="_blank" rel="external">Versioning Your Applications</a></li>
+<li><a href="http://stackoverflow.com/a/21405744/2227031" target="_blank" rel="external">Autoincrement VersionCode with gradle extra properties</a></li>
 </ul>
 
   </section>

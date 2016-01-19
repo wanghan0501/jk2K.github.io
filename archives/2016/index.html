@@ -138,38 +138,16 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2016/01/versionCode-increase-automatically-when-a-new-release/" title="link to post.title">当发布新版本时自动递增 versionCode</a></h2>
       <p class="excerpt">
     
-      准备条件
-假设web目录为/www/example.com
-本地git目录为/website_dev
-公共git仓库地址为http://git.example.com/test/test.git
-git用户为username, 密码为password
-
-步骤
-在/www/example.com目录下执行以下命令
-git clone http://git.example.com/test/test.gitgit remote add product http://username:password
+      需求versionCode是android应用内部用来识别版本，判断新旧用的, 希望每次发布新版本时能够自动化的自增，避免人工修改可能带来的问题
+更好的做法import java.util.regex.Patterntask(&#39;increaseVersionCode&#39;) &amp;lt;&amp;lt; &amp;#123;    def buildFile = file(&quot;build.gradle&quot;)    def pattern = Pattern.compile(&quot;versionCode\\s+(\\d+)&quot;) 
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/git/">git</a>
-</span><a class="btn-border-small" href="/2014/05/automatic-deployment-with-git-hooks/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/discuz-database-access-denied-for-user-localhost/" title="link to post.title">discuz因数据库权限错误报Access denied for user</a></h2>
-      <p class="excerpt">
-    
-      情景在现笔者根据数据库用户权限最小化的原则分配给discuz的数据库用户权限为select, insert, update, delete, index, 但是安装的时候报Access denied for user错误，经过一番资料查找，得出可能是缺少create, drop权限
-分析discuz的数据库用户权限至少应该包括select, insert, update, delete, index, create, drop, alter, 如果缺少的话, 可能会报Access denied 
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-05-17T13:07:12.000Z" class="post-list__meta--date date">2014-05-17</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/discuz/">discuz</a>
-</span><a class="btn-border-small" href="/2014/05/discuz-database-access-denied-for-user-localhost/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2016-01-19T07:31:57.000Z" class="post-list__meta--date date">2016-01-19</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span><a class="btn-border-small" href="/2016/01/versionCode-increase-automatically-when-a-new-release/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   

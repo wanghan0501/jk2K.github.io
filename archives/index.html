@@ -138,6 +138,21 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/01/versionCode-increase-automatically-when-a-new-release/" title="link to post.title">当发布新版本时自动递增 versionCode</a></h2>
+      <p class="excerpt">
+    
+      需求versionCode是android应用内部用来识别版本，判断新旧用的, 希望每次发布新版本时能够自动化的自增，避免人工修改可能带来的问题
+更好的做法import java.util.regex.Patterntask(&#39;increaseVersionCode&#39;) &amp;lt;&amp;lt; &amp;#123;    def buildFile = file(&quot;build.gradle&quot;)    def pattern = Pattern.compile(&quot;versionCode\\s+(\\d+)&quot;) 
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-01-19T07:31:57.000Z" class="post-list__meta--date date">2016-01-19</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span><a class="btn-border-small" href="/2016/01/versionCode-increase-automatically-when-a-new-release/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2015/12/implement-pinch-zoom-and-drag-in-fresco-library/" title="link to post.title">让 fresco 支持双指缩放与拖动</a></h2>
       <p class="excerpt">
     
@@ -314,26 +329,6 @@ windows版本：Microsoft Windows Server 2008 R2 Enterprise
     </li>
   
     
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-php/" title="link to post.title">windows安装配置php</a></h2>
-      <p class="excerpt">
-    
-      环境：
-php-5.5.11-Win32-VC11-x64.zip
-WindowsServer 2008 R2
-
-说明：
-Non Thread Safe和Thread Safe版本的区别Thread Safe是线程安全，执行时会进行线程（Thread）安全检查，以防止有新请求就启动新线程的CGI执行方式而耗尽系统资源。Non Thread Safe是非线程安全，在执行时不进行线程（Thread）安全检查。
-VC6、VC9和VC11的区别由不同的编译器编译而成,VC6是由Visual Studio
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-04-08T08:11:19.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/php/">php</a>
-</span><a class="btn-border-small" href="/2014/04/windows-install-php/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
   </ol>
 
 
@@ -357,7 +352,7 @@ VC6、VC9和VC11的区别由不同的编译器编译而成,VC6是由Visual Studi
         基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
     </span>
     <span class="footer__copyright">
-        &copy; 2015 - 本站由 <a href="/">@jk2K</a> 创建,
+        &copy; 2016 - 本站由 <a href="/">@jk2K</a> 创建,
         使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题,
         修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>
     </span>
