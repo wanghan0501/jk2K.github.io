@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>实现通过 DownloadManager 下载 apk，下载完后自动提示安装的功能 | jk2K&#39;s 窝</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="实现通过 DownloadManager 下载 apk，下载完后自动提示安装的功能 | jk2K&#39;s 窝">
+    <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="实现通过 DownloadManager 下载 apk，下载完后自动提示安装的功能 | jk2K&#39;s 窝">
+    <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    
+    <meta name="author" content="John Doe">
+    
+    <link rel="stylesheet" href="/css/vno.css" type="text/css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+
+    
+    <link rel="icon" href="/images/logo.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://jk2K.com/2016/01/install-apk-automatically-after-the-download-is-complete-with-download-manager/"/>
+
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 jk2K&#39;s 窝 的主页"><img src="/images/logo.jpg" width="80" alt="jk2K&#39;s 窝 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for jk2K&#39;s 窝">jk2K&#39;s 窝</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">休息，是为了更好的前行</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+        <!-- Weibo-->
+        
+        <li class="navigation__item">
+            <a href="http://weibo.com/jk2K" title="我的微博" target="_blank">
+                <i class='social fa fa-weibo'></i>
+                <span class="label">Weibo</span>
+            </a>
+        </li>
+        
+
+        <!-- SegmentFault -->
+
+        <!-- Github -->
+        
+        <li class="navigation__item">
+            <a href="https://github.com/jk2K" title="查看我的GitHub主页" target="_blank">
+                <i class='social fa fa-github'></i>
+                <span class="label">Github</span>
+            </a>
+        </li>
+        
+
+        <!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/2227031/jk2k" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+        <!-- Google Plus -->
+        
+
+        <!-- Facebook -->
+        
+
+        <!-- Twitter -->
+        
+
+        
+    </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-01-22T08:22:16.000Z" class="post-list__meta--date date">2016-01-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span>
+    </div>
+    <h1 class="post-title">实现通过 DownloadManager 下载 apk，下载完后自动提示安装的功能</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="运行环境">运行环境</h2><ul>
+<li>Android 5.1.1, API 22</li>
+</ul>
+<h2 id="解决方案">解决方案</h2><ol>
+<li><p>下载新版本的 <code>apk</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloadNewVersion</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mDownloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);</span><br><span class="line">    <span class="comment">// apkDownloadUrl 是 apk 的下载地址</span></span><br><span class="line">    DownloadManager.Request request = <span class="keyword">new</span> DownloadManager.Request(Uri.parse(apkDownloadUrl));</span><br><span class="line">    <span class="comment">// 获取下载队列 id</span></span><br><span class="line">    enqueueId = mDownloadManager.enqueue(request);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册接收下载完成的广播</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">BroadcastReceiver receiver = <span class="keyword">new</span> BroadcastReceiver() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> downloadCompletedId = intent.getLongExtra(</span><br><span class="line">                DownloadManager.EXTRA_DOWNLOAD_ID, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 检查是否是自己的下载队列 id, 有可能是其他应用的</span></span><br><span class="line">        <span class="keyword">if</span> (enqueueId != downloadCompletedId) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        DownloadManager.Query query = <span class="keyword">new</span> DownloadManager.Query();</span><br><span class="line">        query.setFilterById(enqueueId);</span><br><span class="line">        Cursor c = mDownloadManager.query(query);</span><br><span class="line">        <span class="keyword">if</span> (c.moveToFirst()) &#123;</span><br><span class="line">            <span class="keyword">int</span> columnIndex = c.getColumnIndex(DownloadManager.COLUMN_STATUS);</span><br><span class="line">            <span class="comment">// 下载失败也会返回这个广播，所以要判断下是否真的下载成功</span></span><br><span class="line">            <span class="keyword">if</span> (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) &#123;</span><br><span class="line">                <span class="comment">// 获取下载好的 apk 路径</span></span><br><span class="line">                String uriString = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_FILENAME));</span><br><span class="line">                <span class="comment">// 提示用户安装</span></span><br><span class="line">                promptInstall(Uri.parse(<span class="string">"file://"</span> + uriString));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 注册广播, 设置只接受下载完成的广播</span></span><br><span class="line">registerReceiver(receiver, <span class="keyword">new</span> IntentFilter(</span><br><span class="line">        DownloadManager.ACTION_DOWNLOAD_COMPLETE));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提示用户安装</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">promptInstall</span><span class="params">(Uri data)</span> </span>&#123;</span><br><span class="line">    Intent promptInstall = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW)</span><br><span class="line">            .setDataAndType(data, <span class="string">"application/vnd.android.package-archive"</span>);</span><br><span class="line">    <span class="comment">// FLAG_ACTIVITY_NEW_TASK 可以保证安装成功时可以正常打开 app</span></span><br><span class="line">    promptInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">    startActivity(promptInstall);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>就是这样，运行 app 看下效果吧</p>
+<h2 id="总结">总结</h2><p>坑比较多，花了3天时间才完全实现这个效果<br>1个坑是必须使用<code>setDataAndType()</code>，而不能单独使用<code>setData()</code>和<code>setType()</code><br>另外一个坑是<code>getUriForDownloadedFile</code>现在返回的是<code>content://</code>这种格式的链接了，无法用于启动<code>intent</code><br>最后一个坑是<code>intent</code>必须设置<code>FLAG_ACTIVITY_NEW_TASK</code>, 否则安装完成后无法正常打开<code>app</code></p>
+<h2 id="常见问题">常见问题</h2><h3 id="提示解析程序包时出现问题">提示<code>解析程序包时出现问题</code></h3><h4 id="答">答</h4><p><code>mDownloadManager.getUriForDownloadedFile(enqueueId)</code>返回的<code>Uri</code>是这种格式的<code>content://downloads/my_downloads/83</code>, 这种格式的<code>Uri</code>启动<code>intent</code>会报<code>解析程序包时出现问题</code></p>
+<h3 id="No_Activity_found_to_handle_Intent">No Activity found to handle Intent</h3><blockquote>
+<p>No Activity found to handle Intent { act=android.intent.action.VIEW dat=/storage/sdcard/download/demo.apk typ=application/vnd.android.package-archive</p>
+</blockquote>
+<h4 id="答-1">答</h4><p>可能原因1:<br>有可能是没有权限读取这个文件或者文件路径错误</p>
+<p>可能原因2:</p>
+<pre><code class="java"><span class="comment">// Intent promptInstall = new Intent(Intent.ACTION_VIEW)</span>
+<span class="comment">//            .setData(data)</span>
+<span class="comment">//            .setType("application/vnd.android.package-archive");</span>
+Intent promptInstall = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW)
+                .setDataAndType(data, <span class="string">"application/vnd.android.package-archive"</span>);
+</code></pre>
+<p>单独设置<code>data</code>和<code>type</code>也会造成这个错误，原因请看<a href="http://developer.android.com/reference/android/content/Intent.html#setData(android.net.Uri" target="_blank" rel="external">http://developer.android.com/reference/android/content/Intent.html#setData(android.net.Uri)</a>)<br>你会发现无论何时你去设置<code>data</code>或者<code>type</code>, 另外一个都会自动的变为空, 例如: <code>setData()</code>会使得<code>type</code>参数值为空, 如果你想让两者都生效的话只能使用<code>setDataAndType()</code></p>
+<h3 id="提示应用程序未安装">提示<code>应用程序未安装</code></h3><h4 id="答-2">答</h4><p>有可能是因为<code>APK</code> 签名不一致, 比如之前是<code>debug</code>版(无签名), 现在你更新安装<code>release</code>版(有签名), 就会出现这个问题</p>
+<h2 id="参考链接">参考链接</h2><ul>
+<li><a href="http://blog.csdn.net/ljz2009y/article/details/7645734" target="_blank" rel="external">Android 安卓系统提示应用程序未安装的解决方法</a></li>
+<li><a href="http://stackoverflow.com/questions/22736258/android-downloadmanager-and-media-scanner" target="_blank" rel="external">Android DownloadManager and Media Scanner</a></li>
+<li><a href="http://stackoverflow.com/a/4969421/2227031" target="_blank" rel="external">Android: install .apk programmatically</a></li>
+<li><a href="http://stackoverflow.com/a/5338066/2227031" target="_blank" rel="external">为何必须用setDataAndType, 而不能单独设置data和type</a></li>
+<li><a href="http://blog.vogella.com/2011/06/14/android-downloadmanager-example/" target="_blank" rel="external">Android DownloadManager Example</a></li>
+<li><a href="http://blog.csdn.net/caroline_wendy/article/details/50475854" target="_blank" rel="external">在应用中更新App版本</a></li>
+<li><a href="http://www.cnblogs.com/wlrhnh/p/4641105.html" target="_blank" rel="external">DownloadManager补漏</a></li>
+<li><a href="http://www.cnblogs.com/zhengxt/p/3657833.html" target="_blank" rel="external">全局接收下载完成的广播</a></li>
+</ul>
+
+  </section>
+
+</article>
+
+
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
+
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@jk2K</a> 创建,
+        使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题,
+        修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>
+    </span>
+</footer>
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/main.js" type="text/javascript"></script>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-63739663-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>
