@@ -138,6 +138,27 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2016/03/iTerm2-enable-shell-integration-to-support-file-uploads-and-downloads/" title="link to post.title">让 iTerm2 支持拖拽上传文件和右键下载文件</a></h2>
+      <p class="excerpt">
+    
+      条件准备
+iTerm2 version 3 nightly builds
+
+动手需要在你自己的机器和想通过ssh远程连接的机器上都安装shell integration
+自动安装curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+手动安装
+下载这个脚本
+curl -L https://iterm2.com/misc/`basename $SHELL`_startup.in &amp;gt;&amp;gt; \~/.iterm2_
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2016-03-03T03:11:39.000Z" class="post-list__meta--date date">2016-03-03</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/mac/">mac</a>
+</span><a class="btn-border-small" href="/2016/03/iTerm2-enable-shell-integration-to-support-file-uploads-and-downloads/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2016/01/install-apk-automatically-after-the-download-is-complete-with-download-manager/" title="link to post.title">实现 DownloadManager 下载完 apk 自动提示安装的功能</a></h2>
       <p class="excerpt">
     
@@ -301,28 +322,6 @@ rotate
       <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
   <a class="tag-link" href="/tags/apache/">apache</a>
 </span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
-      <p class="excerpt">
-    
-      准备条件
-假设web目录为/www/example.com
-本地git目录为/website_dev
-公共git仓库地址为http://git.example.com/test/test.git
-git用户为username, 密码为password
-
-步骤
-在/www/example.com目录下执行以下命令
-git clone http://git.example.com/test/test.gitgit remote add product http://username:password
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2014-05-23T04:36:13.000Z" class="post-list__meta--date date">2014-05-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/git/">git</a>
-</span><a class="btn-border-small" href="/2014/05/automatic-deployment-with-git-hooks/">继续阅读</a></div>
       <hr class="post-list__divider" />
     </li>
   
