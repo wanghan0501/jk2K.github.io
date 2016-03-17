@@ -138,6 +138,23 @@
   
     
     <li>
+      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
+      <p class="excerpt">
+    
+      方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
+其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
+5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
+rotate
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2014-06-11T10:33:42.000Z" class="post-list__meta--date date">2014-06-11</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/apache/">apache</a>
+</span><a class="btn-border-small" href="/2014/06/improved-apache-log/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
       <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
       <p class="excerpt">
     
