@@ -25,8 +25,8 @@
     
     <meta name="author" content="John Doe">
     
-    <link rel="stylesheet" href="/css/vno.css" type="text/css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     
     <link rel="icon" href="/images/logo.jpg">
@@ -138,7 +138,28 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进apache日志</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/08/how-to-test-apache-concurrency-access/" title="link to post.title">如何并发访问 Apache</a></h2>
+      <p class="excerpt">
+    
+      需求需要同时访问某个链接, web服务器是apache
+条件准备apache需加载mod_status模块
+
+打开apache配置文件httpd.conf, 搜索mod_status, 找到如下代码, 取消前面的#注释符
+#LoadModule status_module modules/mod_status.so
+
+配置查看apache服务状态的页面地址, 在httpd.conf最后一行添加如下代码
+&amp;lt;location /server-status&amp;gt;	sethandler serv
+    &hellip;
+      </p>
+      <div class="post-list__meta"><time datetime="2014-08-02T08:08:20.000Z" class="post-list__meta--date date">2014-08-02</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/apache/">apache</a>
+</span><a class="btn-border-small" href="/2014/08/how-to-test-apache-concurrency-access/">继续阅读</a></div>
+      <hr class="post-list__divider" />
+    </li>
+  
+    
+    <li>
+      <h2 class="post-list__post-title post-title"><a href="/2014/06/improved-apache-log/" title="link to post.title">改进 Apache 日志</a></h2>
       <p class="excerpt">
     
       方案让log按照日期来存储ErrorLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M&quot;CustomLog &quot;|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400&quot; common
@@ -155,7 +176,7 @@ rotate
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过git hooks自动部署代码</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/05/automatic-deployment-with-git-hooks/" title="link to post.title">通过 Git hooks 自动部署代码</a></h2>
       <p class="excerpt">
     
       准备条件
@@ -177,7 +198,7 @@ git clone http://git.example.com/test/test.gitgit remote add product http://user
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/05/discuz-database-access-denied-for-user-localhost/" title="link to post.title">discuz因数据库权限错误报Access denied for user</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/05/discuz-database-access-denied-for-user-localhost/" title="link to post.title">discuz 因数据库权限错误报 Access denied for user</a></h2>
       <p class="excerpt">
     
       情景在现笔者根据数据库用户权限最小化的原则分配给discuz的数据库用户权限为select, insert, update, delete, index, 但是安装的时候报Access denied for user错误，经过一番资料查找，得出可能是缺少create, drop权限
@@ -192,18 +213,18 @@ git clone http://git.example.com/test/test.gitgit remote add product http://user
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-configure-secure-mysql/" title="link to post.title">windows下配置一个更安全的mysql</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-configure-secure-mysql/" title="link to post.title">windows 下配置一个更安全的 MySQL</a></h2>
       <p class="excerpt">
     
       环境
-mysql版本：mysql-5.6.16-winx64.zip
-windows版本：Microsoft Windows Server 2008 R2 Enterprise
+MySQL 版本：mysql-5.6.16-winx64.zip
+windows 版本：Microsoft Windows Server 2008 R2 Enterprise
 
 安装步骤
 解压mysql-5.6.16-winx64.zip至e:\software\mysql
 将e:\software\mysql\bin添加至系统变量path中，使得cmd中可以直接运行bin文件夹下的程序
 修改mysql目录下的my-default.ini为my.ini，按情况修改配置
-将mysql安装为win
+将mysql安装为w
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2014-04-08T08:22:40.000Z" class="post-list__meta--date date">2014-04-08</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
@@ -214,7 +235,7 @@ windows版本：Microsoft Windows Server 2008 R2 Enterprise
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-php/" title="link to post.title">windows安装配置php</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-php/" title="link to post.title">windows 安装配置 PHP</a></h2>
       <p class="excerpt">
     
       环境：
@@ -234,7 +255,7 @@ VC6、VC9和VC11的区别由不同的编译器编译而成,VC6是由Visual Studi
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows安装配置apache</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/04/windows-install-apache/" title="link to post.title">windows 安装配置 Apache</a></h2>
       <p class="excerpt">
     
       环境
@@ -256,7 +277,7 @@ WindowsServer 2008 R2
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2014/04/discuz-add-custom-keyword-when-publish-article/" title="link to post.title">discuz添加在发布文章时输入自定义关键字的功能</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2014/04/discuz-add-custom-keyword-when-publish-article/" title="link to post.title">discuz 添加在发布文章时输入自定义关键字的功能</a></h2>
       <p class="excerpt">
     
       环境
@@ -275,7 +296,7 @@ discuz x3.1
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz自定义退出时的跳转地址</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2012/10/discuz-custom-exit-page/" title="link to post.title">discuz 自定义退出时的跳转地址</a></h2>
       <p class="excerpt">
     
       需求如果我们想在discuz退出后跳转到其他页面，比如说另外定制的一个页面，该怎么做呢?
@@ -293,16 +314,16 @@ discuz x3.1
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6导致无法访问mysql数据库</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2012/04/ipv6-cause-unable-connect-to-mysql-database/" title="link to post.title">ipv6 导致无法访问 MySQL 数据库</a></h2>
       <p class="excerpt">
     
       环境
 xp sp3系统
-php5.2.6
-apache httpd-2.2.22-win32-x86-no_ssl
-mysql5.5.20.0
+PHP 5.2.6
+Apache httpd-2.2.22-win32-x86-no_ssl
+MySQL 5.5.20.0
 
-情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#39
+情景再现前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为Could not connect to the specific instance MySQL Error Number 2003，Can&amp;#39;t connect to MySQL server on &amp;#39;localhost&amp;#
     &hellip;
       </p>
       <div class="post-list__meta"><time datetime="2012-04-28T05:24:21.000Z" class="post-list__meta--date date">2012-04-28</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
@@ -343,8 +364,8 @@ mysql5.5.20.0
         </div>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
 
      
 <script>

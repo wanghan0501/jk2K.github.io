@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Android NDK 介绍与使用示例 | jk2K&#39;s 窝</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Android NDK 介绍与使用示例 | jk2K&#39;s 窝">
+    <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Android NDK 介绍与使用示例 | jk2K&#39;s 窝">
+    <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
+
+    
+    <meta name="author" content="John Doe">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/logo.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://jk2K.com/2016/09/how-to-use-ndk-and-generate-so-file-in-android-studio/"/>
+
+    
+</head>
+<body class="home-template no-js">
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 jk2K&#39;s 窝 的主页"><img src="/images/logo.jpg" width="80" alt="jk2K&#39;s 窝 logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for jk2K&#39;s 窝">jk2K&#39;s 窝</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">休息，是为了更好的前行</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+        <!-- Weibo-->
+        
+        <li class="navigation__item">
+            <a href="http://weibo.com/jk2K" title="我的微博" target="_blank">
+                <i class='social fa fa-weibo'></i>
+                <span class="label">Weibo</span>
+            </a>
+        </li>
+        
+
+        <!-- SegmentFault -->
+
+        <!-- Github -->
+        
+        <li class="navigation__item">
+            <a href="https://github.com/jk2K" title="查看我的GitHub主页" target="_blank">
+                <i class='social fa fa-github'></i>
+                <span class="label">Github</span>
+            </a>
+        </li>
+        
+
+        <!-- Stack Overflow -->
+        
+        <li class="navigation__item">
+            <a href="http://stackoverflow.com/users/2227031/jk2k" title="Stack Overflow" target="_blank">
+                <i class='social fa fa-stack-overflow'></i>
+                <span class="label">Stack Overflow</span>
+            </a>
+        </li>
+        
+
+        <!-- Google Plus -->
+        
+
+        <!-- Facebook -->
+        
+
+        <!-- Twitter -->
+        
+
+        
+    </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-09-21T06:02:27.000Z" class="post-list__meta--date date">2016-09-21</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/android/">android</a>
+</span>
+    </div>
+    <h1 class="post-title">Android NDK 介绍与使用示例</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="NDK-是干啥的？"><a href="#NDK-是干啥的？" class="headerlink" title="NDK 是干啥的？"></a>NDK 是干啥的？</h3><p>全称 <code>Native Development Kit</code>, 允许你在 Android 应用中使用 <code>C</code> 或 <code>C++</code> 代码</p>
+<h3 id="NDK-的好处"><a href="#NDK-的好处" class="headerlink" title="NDK 的好处"></a>NDK 的好处</h3><ul>
+<li>NDK 可以生成 <code>.so</code> 文件, 方便代码共享 </li>
+<li>增加反编译的难度</li>
+<li>提高性能</li>
+</ul>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><h3 id="版本说明"><a href="#版本说明" class="headerlink" title="版本说明"></a>版本说明</h3><ul>
+<li>Android Studio: 2.2</li>
+<li>Android Plugin for Gradle: com.android.tools.build:gradle:2.2.0</li>
+<li>Gradle: 2.14.1</li>
+</ul>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>在 Android Studio 里下载好 NDK<br><img src="/2016/09/how-to-use-ndk-and-generate-so-file-in-android-studio/ndk-installation-figure.png" alt="ndk installation figure" title="ndk installation figure"></p>
+<p>Android Studio 2.2 稳定版已发布，这个版本增强了 C++ 的开发能力，能够使用 ndk-build 或 CMake 去编译和调试项目里的 C++ 代码</p>
+<p>ndk-build 或 CMake 比用 Gradle 去编译 C++ 更好</p>
+<p>因为 NDK 套件里自带 ndk-build, 不需要再额外安装 CMake, 为了简单起见以下示例都用 ndk-build 去编译 C++</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>为了能够在 Android Studio 里使用 CMake 或 ndk-build，你必须使用 Android Studio 2.2 或更高版本 和 Android Plugin for Gradle version 2.2.0 或更高版本</li>
+<li>由于 Android Studio 编译 C 和 C++ 代码默认使用  CMake, 因此我建议使用 <a href="http://tools.android.com/tech-docs/new-build-system/gradle-experimental" target="_blank" rel="external">Experimental Android Plugin for Gradle</a> 的用户也切换到 Android Plugin for Gradle version 2.2.0 或更高版本，这样既可以使用 Android Plugin for Gradle 的稳定版本，也可以使用 CMake 或 ndk-build 来提高编译速度</li>
+</ul>
+<h3 id="Android-mk-和-Application-mk"><a href="#Android-mk-和-Application-mk" class="headerlink" title="Android.mk 和 Application.mk"></a>Android.mk 和 Application.mk</h3><p>简单来说</p>
+<ul>
+<li>Android.mk 用来描述需要生成哪些模块的 <code>.so</code> 文件</li>
+<li>Application.mk 用来描述如何生成 <code>.so</code> 文件，生成静态库还是动态库</li>
+</ul>
+<p>这里给出示例文件</p>
+<h4 id="Android-mk"><a href="#Android-mk" class="headerlink" title="Android.mk"></a><a href="https://developer.android.com/ndk/guides/android_mk.html" target="_blank" rel="external">Android.mk</a></h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div><div class="line">include $(CLEAR_VARS)</div><div class="line"></div><div class="line">LOCAL_MODULE := gaussianBlur</div><div class="line">LOCAL_SRC_FILES := blur.cpp</div><div class="line">LOCAL_LDLIBS := -llog</div><div class="line"></div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>宏函数 my-dir 是由编译系统提供的，会返回当前目录的路径（当前目录指的是包含 Android.mk 的目录）</p>
+</li>
+<li><p>CLEAR_VARS 这个变量也是由编译系统提供的，会清除很多 LOCAL_XXX 变量</p>
+</li>
+</ul>
+<p>以上两行命令基本上是固定的，不需要去动</p>
+<ul>
+<li><p>LOCAL_MODULE 指定模块名称，会自动生成相应的 libgaussianBlur.so 文件</p>
+</li>
+<li><p>LOCAL_SRC_FILES 指定这个模块要编译的 C++ 文件</p>
+</li>
+<li><p>LOCAL_LDLIBS 指定这个模块里会用到哪些原生 API, 详见 <a href="https://developer.android.com/ndk/guides/stable_apis.html" target="_blank" rel="external">Android NDK Native APIs</a></p>
+</li>
+<li><p>BUILD_SHARED_LIBRARY 根据你之前定义的 LOCAL_XXX 变量，决定要编译啥，如何去编译，这行命令一般也不需要动，固定的</p>
+</li>
+</ul>
+<h4 id="Application-mk"><a href="#Application-mk" class="headerlink" title="Application.mk"></a><a href="https://developer.android.com/ndk/guides/application_mk.html" target="_blank" rel="external">Application.mk</a></h4><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">APP_STL := gnustl_static</div></pre></td></tr></table></figure>
+<p>APP_STL 指定使用哪些 C++ 运行时, 详见 <a href="https://developer.android.com/ndk/guides/cpp-support.html" target="_blank" rel="external">C++ Library Support</a></p>
+<p>Android.mk 和 Application.mk 都放在 jni 目录下<br>项目文件结构如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">|____app</div><div class="line">| |____src</div><div class="line">| | |____main</div><div class="line">| | | |____jni</div><div class="line">| | | | |____Android.mk</div><div class="line">| | | | |____Application.mk</div><div class="line">| | | | |____blur.cpp</div></pre></td></tr></table></figure></p>
+<h3 id="如何使用-C-代码"><a href="#如何使用-C-代码" class="headerlink" title="如何使用 C++ 代码?"></a>如何使用 C++ 代码?</h3><p>前面已经给出了 Android.mk 和 Application.mk 的示例，下面在 build.gradle 里配置 externalNativeBuild 就可以自动编译 C++ 代码了</p>
+<p>示例内容如下<br><figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line">defaultConfig &#123;</div><div class="line">	applicationId <span class="string">"com.example.app"</span></div><div class="line">	minSdkVersion <span class="number">16</span></div><div class="line">	targetSdkVersion <span class="number">24</span></div><div class="line">	versionCode <span class="number">102</span></div><div class="line">	versionName <span class="string">"0.2"</span></div><div class="line"></div><div class="line">	externalNativeBuild &#123;</div><div class="line">		ndkBuild &#123;</div><div class="line">			arguments <span class="string">"NDK_APPLICATION_MK:=src/main/jni/Application.mk"</span></div><div class="line">			cFlags <span class="string">"-DTEST_C_FLAG1"</span>, <span class="string">"-DTEST_C_FLAG2"</span></div><div class="line">			cppFlags <span class="string">"-DTEST_CPP_FLAG2"</span>, <span class="string">"-DTEST_CPP_FLAG2"</span></div><div class="line">			abiFilters <span class="string">"armeabi-v7a"</span>, <span class="string">"armeabi"</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">externalNativeBuild &#123;</div><div class="line">	ndkBuild &#123;</div><div class="line">		path <span class="string">"src/main/jni/Android.mk"</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>path 用来指定 Android.mk 的路径</li>
+<li>arguments 用来指定 Application.mk 的路径</li>
+<li>abiFilters 用来指定生成哪些平台的 .so 文件</li>
+<li>cFlags 和 cppFlags 是用来设置环境变量的, 一般不需要动，和示例一样就好，</li>
+</ul>
+<p>好了，现在运行项目，就可以将 <code>blur.cpp</code> 自动编译为 <code>libgaussianBlur.so</code> 文件了</p>
+<h3 id="手动生成-so-文件"><a href="#手动生成-so-文件" class="headerlink" title="手动生成 .so 文件"></a>手动生成 <code>.so</code> 文件</h3><p>如果能直接引用生成好的 <code>.so</code> 文件，可以避免重复编译 <code>.so</code> 文件，从而加快应用 build 速度</p>
+<p>下面是手动生成 <code>.so</code> 文件的步骤<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># 进入 main 目录</span></div><div class="line"><span class="built_in">cd</span> app/src/main</div><div class="line"></div><div class="line"><span class="comment"># 生成 .so 文件</span></div><div class="line">/Users/lee/Library/Android/sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./jni/Application.mk NDK_LIBS_OUT=./jniLibs</div></pre></td></tr></table></figure></p>
+<p>执行这个命令后，会在 <code>app/src/main/jniLibs</code> 目录生成各个平台的 <code>.so</code> 文件<br>如果需要把 <code>.so</code> 文件共享给其他人，把这些平台下的 <code>.so</code> 文件发给其他人就好了</p>
+<p>/Users/lee/Library/Android/sdk/ndk-bundle/ndk-build 是我下载好的 NDK 目录路径</p>
+<ul>
+<li>NDK_PROJECT_PATH 指定项目路径, 会自动读取这个目录下的 jni/Android.mk 文件</li>
+<li>NDK_APPLICATION_MK 指定 Application.mk 的位置</li>
+<li>NDK_LIBS_OUT 指定将生成的 <code>.so</code> 文件放到哪个目录，默认 Android Studio 会读取 jniLibs 目录下的 <code>.so</code> 文件, 所以我们把 <code>.so</code> 文件生成到这</li>
+</ul>
+<p>测试结果: （测试均在 clean 项目后进行）<br>引用 <code>.so</code> 文件前平均耗时 <code>1m 27s</code><br>引用 <code>.so</code> 文件后平均耗时 <code>47s</code><br>我们可以看到 build 速度快了将近一倍</p>
+<h3 id="调试-NDK"><a href="#调试-NDK" class="headerlink" title="调试 NDK"></a>调试 NDK</h3><p>让 <code>NDK_LOG</code> 变量为1，就可以打印日志信息<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ndk-build <span class="_">-e</span> NDK_LOG=1</div></pre></td></tr></table></figure></p>
+<h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><h3 id="Android-Studio-如何知道项目里用了-C-或-C-代码并自动去编译它-？"><a href="#Android-Studio-如何知道项目里用了-C-或-C-代码并自动去编译它-？" class="headerlink" title="Android Studio 如何知道项目里用了 C 或 C++ 代码并自动去编译它 ？"></a>Android Studio 如何知道项目里用了 C 或 C++ 代码并自动去编译它 ？</h3><p>Android Studio 会检查 <code>app/src/main/jni</code> 目录下是否有 C 或 C++ 代码, 如果有, 就根据 <code>build.gradle</code> 里的配置调用 CMake 或 ndk-build 去编译它</p>
+<h3 id="externalNativeBuild-这个我怎么知道如何配"><a href="#externalNativeBuild-这个我怎么知道如何配" class="headerlink" title="externalNativeBuild 这个我怎么知道如何配 ?"></a>externalNativeBuild 这个我怎么知道如何配 ?</h3><p>可以参考 <a href="https://sites.google.com/a/android.com/tools/tech-docs/external-c-builds" target="_blank" rel="external">Building C++ in Android Studio with CMake or ndk-build</a></p>
+<p>这里有个问题，官方示例里的 targets 参数我不知道怎么用，如果设置为和 Android.mk 里    LOCAL_MODULE 一样的会报错误，不加就能运行</p>
+<p>这里有个 bug 报告, <a href="https://code.google.com/p/android/issues/detail?id=215826" target="_blank" rel="external">Inconsitency between LOCAL_MODULE and gradle target name in ndk-build integration</a></p>
+<h3 id="生成的-so-文件需要优化么？"><a href="#生成的-so-文件需要优化么？" class="headerlink" title="生成的 .so 文件需要优化么？"></a>生成的 .so 文件需要优化么？</h3><p>参考这个 SO  问题 <a href="http://stackoverflow.com/a/14579929/2227031" target="_blank" rel="external">Android NDK release build</a></p>
+<p>简单来说就是，默认生成的 .so 文件就是已经优化过的，不需要额外做操作了</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://blog.bugtags.com/2016/06/08/android-ndk-so/" target="_blank" rel="external">Bugtags V1.2.7 引入 NDK SO 库</a></li>
+<li><a href="http://ph0b.com/android-abis-and-so-files/" target="_blank" rel="external">What you should know about .so files</a></li>
+<li><a href="https://dailyios.com/article/Using_Android_Studio_for_NDK_development.html" target="_blank" rel="external">使用AndroidStudio进行NDK开发（一）</a></li>
+<li><a href="https://developer.android.com/ndk/guides/abis.html#sa" target="_blank" rel="external">ABI Management</a></li>
+<li><a href="http://www.jianshu.com/p/ce003c4fe1cf" target="_blank" rel="external">Android NDK编译本地文件以及引用第三方so文件</a></li>
+<li><a href="http://android-developers.blogspot.jp/2016/09/android-studio-2-2.html" target="_blank" rel="external">Android Studio 2.2</a></li>
+<li><a href="https://developer.android.com/studio/projects/add-native-code.html" target="_blank" rel="external">Add C and C++ Code to Your Project</a></li>
+<li><a href="http://stackoverflow.com/questions/14156596/ndk-cant-find-the-application-directory" target="_blank" rel="external">NDK can’t find the application directory</a></li>
+</ul>
+
+  </section>
+
+</article>
+
+
+<section class="post-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'jk2K'; // required: replace example with your forum shortname
+
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@jk2K</a> 创建,
+        使用<a href="https://github.com/lenbo-ma/hexo-theme-vno">hexo-theme-vno</a>主题,
+        修改自<a href="http://github.com/onevcat/vno" target="_blank">Vno</a>
+    </span>
+</footer>
+        </div>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-63739663-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>改进apache日志 | jk2K&#39;s 窝</title>
+    <title>改进 Apache 日志 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,18 +15,18 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="改进apache日志 | jk2K&#39;s 窝">
+    <meta name="twitter:title" content="改进 Apache 日志 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="改进apache日志 | jk2K&#39;s 窝">
+    <meta property="og:title" content="改进 Apache 日志 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
     <meta name="author" content="John Doe">
     
-    <link rel="stylesheet" href="/css/vno.css" type="text/css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     
     <link rel="icon" href="/images/logo.jpg">
@@ -140,19 +140,19 @@
   <a class="tag-link" href="/tags/apache/">apache</a>
 </span>
     </div>
-    <h1 class="post-title">改进apache日志</h1>
+    <h1 class="post-title">改进 Apache 日志</h1>
   </header>
 
   <section class="post">
-    <h2 id="方案">方案</h2><h3 id="让log按照日期来存储">让log按照日期来存储</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ErrorLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M"</span></span><br><span class="line"><span class="keyword">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400"</span> common</span><br></pre></td></tr></table></figure>
+    <h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h3 id="让log按照日期来存储"><a href="#让log按照日期来存储" class="headerlink" title="让log按照日期来存储"></a>让log按照日期来存储</h3><figure class="highlight apache"><table><tr><td class="code"><pre><div class="line"><span class="attribute">ErrorLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.error.%Y.%m.%d.%H_%M_%S.log 5M"</span></div><div class="line"><span class="attribute">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400"</span> common</div></pre></td></tr></table></figure>
 <pre><code>其中86400是指86400秒，正好是1天，表示按照1天的间隔来存储日志
-5<span class="tag">M</span>是指当错误日志容量大于5<span class="tag">M</span>时, 新建一个日志文件来存储
-<span class="tag">rotatelogs</span><span class="class">.exe</span>的参数<span class="tag">l</span>是指使用本地时间代替<span class="tag">GMT</span>时间作为时间基准, 避免记录的时间有错误
-</code></pre><h3 id="过滤不必要的日志">过滤不必要的日志</h3><p>日志中一般没有必要记录静态的资源文件请求，比如图片、js、css等，将这些请求过滤后能大幅减少日志记录行数<br>首先要保证一个叫setenvif的mod已经安装并enable，然后在VirtualHost的配置文件中添加<br><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;FilesMatch "\.(png|gif|jpe?g|js|css|swf)$"&gt;</span></span><br><span class="line">	<span class="keyword"><span class="common">SetEnv</span></span> dontlog 1</span><br><span class="line"><span class="tag">&lt;/FilesMatch&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>其作用是过滤静态的资源文件请求，dontlog表示一个变量，将这些过滤器的信息存储在这个变量中，最后在CustomLog行尾添加env=!dontlog，如<br><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400"</span> common env=!dontlog</span><br></pre></td></tr></table></figure></p>
-<h3 id="自定义日志内容">自定义日志内容</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/intra.access.%Y.%m.%d.log 86400"</span> <span class="string">"%h %t %V \"%r\" %&gt;s %b \"%&#123;Referer&#125;i\" \"%&#123;User-agent&#125;i\""</span> env=!dontlog</span><br></pre></td></tr></table></figure>
+5M是指当错误日志容量大于5M时, 新建一个日志文件来存储
+rotatelogs.exe的参数l是指使用本地时间代替GMT时间作为时间基准, 避免记录的时间有错误
+</code></pre><h3 id="过滤不必要的日志"><a href="#过滤不必要的日志" class="headerlink" title="过滤不必要的日志"></a>过滤不必要的日志</h3><p>日志中一般没有必要记录静态的资源文件请求，比如图片、js、css等，将这些请求过滤后能大幅减少日志记录行数<br>首先要保证一个叫setenvif的mod已经安装并enable，然后在VirtualHost的配置文件中添加<br><figure class="highlight apache"><table><tr><td class="code"><pre><div class="line"><span class="section">&lt;FilesMatch "\.(png|gif|jpe?g|js|css|swf)$"&gt;</span></div><div class="line">	<span class="attribute"><span class="nomarkup">SetEnv</span></span> dontlog 1</div><div class="line"><span class="section">&lt;/FilesMatch&gt;</span></div></pre></td></tr></table></figure></p>
+<p>其作用是过滤静态的资源文件请求，dontlog表示一个变量，将这些过滤器的信息存储在这个变量中，最后在CustomLog行尾添加env=!dontlog，如<br><figure class="highlight apache"><table><tr><td class="code"><pre><div class="line"><span class="attribute">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/discuz.dev.access.%Y.%m.%d.log 86400"</span> common env=!dontlog</div></pre></td></tr></table></figure></p>
+<h3 id="自定义日志内容"><a href="#自定义日志内容" class="headerlink" title="自定义日志内容"></a>自定义日志内容</h3><figure class="highlight apache"><table><tr><td class="code"><pre><div class="line"><span class="attribute">CustomLog</span> <span class="string">"|bin/rotatelogs.exe -l logs/intra.access.%Y.%m.%d.log 86400"</span> <span class="string">"%h %t %V \"%r\" %&gt;s %b \"%&#123;Referer&#125;i\" \"%&#123;User-agent&#125;i\""</span> env=!dontlog</div></pre></td></tr></table></figure>
 <p>%h ip<br>%t 时间<br>%V 访问的域名<br>\”%r\” 访问的方法,路径<br>%&gt;s 状态码<br>%b 返回给客户端的字节数<br>\”%{Referer}i\” 访问来源<br>\”%{User-agent}i\” user-agent</p>
-<h2 id="参考链接">参考链接</h2><ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a href="https://sdjkx.me/2013/10/apache-log-optimization/" target="_blank" rel="external">https://sdjkx.me/2013/10/apache-log-optimization/</a></li>
 <li><a href="http://blog.csdn.net/luhao/article/details/2969388" target="_blank" rel="external">http://blog.csdn.net/luhao/article/details/2969388</a></li>
 <li><a href="http://works.jinbuguo.com/apache/menu22/programs/rotatelogs.html" target="_blank" rel="external">http://works.jinbuguo.com/apache/menu22/programs/rotatelogs.html</a></li>
@@ -200,8 +200,8 @@
         </div>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
 
      
 <script>

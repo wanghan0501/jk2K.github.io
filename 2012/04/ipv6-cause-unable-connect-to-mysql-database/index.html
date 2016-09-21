@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝</title>
+    <title>ipv6 导致无法访问 MySQL 数据库 | jk2K&#39;s 窝</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,18 +15,18 @@
     <meta name="description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝">
+    <meta name="twitter:title" content="ipv6 导致无法访问 MySQL 数据库 | jk2K&#39;s 窝">
     <meta name="twitter:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="ipv6导致无法访问mysql数据库 | jk2K&#39;s 窝">
+    <meta property="og:title" content="ipv6 导致无法访问 MySQL 数据库 | jk2K&#39;s 窝">
     <meta property="og:description" content="哈喽, 我是叶萌(@jk2K), 一名来自中国的 PHP / iOS 开发者">
 
     
     <meta name="author" content="John Doe">
     
-    <link rel="stylesheet" href="/css/vno.css" type="text/css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     
     <link rel="icon" href="/images/logo.jpg">
@@ -140,22 +140,22 @@
   <a class="tag-link" href="/tags/ipv6/">ipv6</a>
 </span>
     </div>
-    <h1 class="post-title">ipv6导致无法访问mysql数据库</h1>
+    <h1 class="post-title">ipv6 导致无法访问 MySQL 数据库</h1>
   </header>
 
   <section class="post">
-    <h2 id="环境">环境</h2><ul>
+    <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>xp sp3系统</li>
-<li>php5.2.6</li>
-<li>apache httpd-2.2.22-win32-x86-no_ssl</li>
-<li>mysql5.5.20.0</li>
+<li>PHP 5.2.6</li>
+<li>Apache httpd-2.2.22-win32-x86-no_ssl</li>
+<li>MySQL 5.5.20.0</li>
 </ul>
-<h2 id="情景再现">情景再现</h2><p>前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为<code>Could not connect to the specific instance MySQL Error Number 2003，Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)，If you want to check the network connection, please click the Ping button</code></p>
+<h2 id="情景再现"><a href="#情景再现" class="headerlink" title="情景再现"></a>情景再现</h2><p>前天我在学校的网络中心里安装配置好一个bt程序后，回到寝室里发现数据库不能连接，mysql数据库报错为<code>Could not connect to the specific instance MySQL Error Number 2003，Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)，If you want to check the network connection, please click the Ping button</code></p>
 <p>当时我就纳闷了，好好的数据库怎么突然就无法连接了呢，于是就在网上寻找解决方案，试过很多方法，但是都没能解决我这个问题，我发现好多人都是直接在网上复制答案来给别人回答问题，根本就没有真正考虑这个问题的原因</p>
 <p>比如把<code>my.ini</code>文件复制到<code>windows/system</code>文件夹里,这就是一种典型的治标不治本的方法，并且还无法解决这个问题，此外如果把那个文件复制到<code>windows/system</code>里，万一下次mysql的my.ini文件更改了，怎么办？再复制一次？其实完全可以在系统变量里指定my.ini的路径，这样的话是否一劳永逸？</p>
 <p>我觉得我们解决问题的原则是，既要知道原因，又要知道如何更好地解决它。</p>
-<h2 id="解决方案">解决方案</h2><p>打开mysql的<code>my.ini</code>文件，在mysqld的部分里添加<code>bind-address=127.0.0.1</code>（在<code>port=3306</code>下面）这段代码</p>
-<h2 id="分析">分析</h2><p>原因是我在网络中心的时候安装了ipv6协议，mysql默认是以ipv4地址访问的，当我们安装ipv6协议时，mysql就默认以ipv6地址访问，所以我们才无法连接到数据库，这个问题一般出现在xp系统里，xp系统默认是不安装ipv6协议的，win7默认安装，所以win7不会出现这种问题</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>打开mysql的<code>my.ini</code>文件，在mysqld的部分里添加<code>bind-address=127.0.0.1</code>（在<code>port=3306</code>下面）这段代码</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>原因是我在网络中心的时候安装了ipv6协议，mysql默认是以ipv4地址访问的，当我们安装ipv6协议时，mysql就默认以ipv6地址访问，所以我们才无法连接到数据库，这个问题一般出现在xp系统里，xp系统默认是不安装ipv6协议的，win7默认安装，所以win7不会出现这种问题</p>
 
   </section>
 
@@ -199,8 +199,8 @@
         </div>
     </div>
 
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/main.js" type="text/javascript"></script>
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
 
      
 <script>
